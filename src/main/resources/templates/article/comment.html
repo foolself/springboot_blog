@@ -1,0 +1,33 @@
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<body>
+<div th:fragment="commentList">
+    <dl th:each="comment : ${commentList}">
+        <dd class="comment">
+            from: <span th:text="${comment.fromUid}">fromUid</span>
+
+            <span th:if="${comment.toUid != null}">to: <span th:text="${comment.toUid}">toUid</span></span>
+            created: <span th:text="${comment.created}">created</span>
+            likes: <span th:text="${comment.likes}">likes</span>
+            <p th:text="${comment.content}">content</p>
+        </dd>
+    </dl>
+</div>
+<div th:fragment="commentForm">
+    <P>add comment: </P>
+    <div th:if="${session.username == null}">
+        <a th:href="@{/login}">登陆评论</a>
+    </div>
+    <div th:if="${session.username != null}">
+        <!--这需要 Javascript 呀-->
+        <form action="#" th:action="@{/comment/save}" th:object="${comment}" method="post">
+            <input type="hidden" name="articleId" th:value="${article.id}"/>
+            <input type="hidden" name="fromUid" th:value="${session.username}"/>
+            <p>toId: <input type="text" name="toId" value=""/></p>
+            <p>toUid: <input type="text" name="toUid" value=""/></p>
+            <p>content: <textarea name="content" rows="4" cols="30"></textarea></p>
+            <p><input type="submit" value="submit"/></p>
+        </form>
+    </div>
+</div>
+</body>
+</html>

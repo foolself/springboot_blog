@@ -1,0 +1,15 @@
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<body>
+<div th:fragment="tagsBar">
+    <h4>tagsBar: </h4>
+    <span th:each="tag : ${tagList}">
+        <a th:href="@{/article/byTag?name={name}(name=${tag.name})}" th:text="${tag.name}">tag</a>,
+    </span>
+</div>
+<div th:fragment="tags">
+    <span th:each="tag : ${article.tagList}">
+        <a th:href="@{/article/byTag?name={name}(name=${tag.name})}" th:text="${tag.name}">tag</a>
+    </span>
+</div>
+</body>
+</html>

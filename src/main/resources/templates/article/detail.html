@@ -1,0 +1,19 @@
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<body>
+<div th:fragment="articleDetail">
+    <div id="title">
+        <H4 th:text="${article.title}">title</H4>
+        by: <span th:text="${article.user.username}"> | </span>created: <span th:text="${article.created}"></span>
+    </div>
+    <div th:include="common/tag::tags"></div>
+    <p th:if="${session.username != null && article.user.username == session.username}">
+        <a th:href="@{/article/edit?id={id}(id=${article.id})}">edit</a>
+        <a th:href="@{/article/delete?id={id}(id=${article.id})}">delete</a>
+    </p>
+    <div id="content">
+        <!--<a th:href="@{/article/{id}(id=${article.id})}" th:text="${article.title}">title</a>-->
+        <p th:text="${article.content}">content</p>
+    </div>
+</div>
+</body>
+</html>

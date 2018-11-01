@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>userInfo</title>
+</head>
+<body>
+<div th:include="common/navbar::category"></div>
+<h1>user info: </h1>
+<h4 th:if="${#httpServletRequest.getParameter('error')}">Error: <span th:text="${#httpServletRequest.getParameter('error')}"/></h4>
+<h4 th:if="${msg}"><span th:text="${msg}"></span></h4>
+<div th:if="${user != null}">
+    <div>
+        <p>username: <span th:text="${user.username}">username</span></p>
+        <p>email: <span th:text="${user.email}">email</span></p>
+    </div>
+    <div th:if="${session.username != null}">
+        <p>edit base info:</p>
+        <img th:src="@{${user.avatar}}"/>
+        <form method="POST" action="/upload" enctype="multipart/form-data">
+            <p>upload avatar: <input type="file" name="file" /></p><br/>
+            <input type="submit" value="Submit" />
+        </form>
+        <br>
+        <form action="#" th:action="@{/updateInfo}" th:object="${user}" method="post">
+            <p hidden><input type="text" th:field="*{username}" value="${user.username}"/></p>
+            <!--<p>avatar: <input type="text" th:field="*{avatar}" value="${user.avatar}"/></p>-->
+            <p>email: <input type="email" th:field="*{email}" value="${user.email}"/></p>
+            <p>homeUrl: <input type="text" th:field="*{homeUrl}" value="${user.homeUrl}"/></p>
+            <p><input type="submit" value="确认修改"/></p>
+        </form>
+        <br>
+        <p>change password: </p>
+        <form action="#" th:action="@{/updatePassword}" method="post">
+            <p hidden><input type="text" name="username" th:value="${user.username}"/></p>
+            <p>old password: <input type="password" name="pOld" value=""/></p>
+            <p>new password: <input type="password" name="pNew" value=""/></p>
+            <p><input type="submit" value="确认修改"/></p>
+        </form>
+    </div>
+</div>
+<div th:if="${user == null}">
+    <p>没有用户信息！</p>
+</div>
+</body>
+</html>

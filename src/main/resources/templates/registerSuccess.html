@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>register success</title>
+</head>
+<body>
+<div th:if="${user != null}">
+    <h2>注册成功</h2>
+    <h4>registe info: </h4>
+    <div>
+        <p>username: <span th:text="${user.username}">username</span></p>
+        <p>email: <span th:text="${user.email}">email</span></p>
+    </div>
+    <h4><a th:href="@{/login?username={username}(username=${user.username})}">立即登陆</a></h4>
+</div>
+<div th:if="${user == null}">
+    <p>没有用户信息！</p>
+</div>
+<div th:if="${user == null}">
+    <h4>为什么要访问我呢？</h4>
+</div>
+</body>
+</html>

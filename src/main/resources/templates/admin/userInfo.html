@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>userInfo</title>
+</head>
+<body>
+<div th:if="${user != null}">
+    <p>username: <span th:text="${user.username}">username</span></p>
+    <p>email: <span th:text="${user.email}">email</span></p>
+</div>
+<div th:each="article : ${articleList}">
+    <a th:href="@{/article/detail/{id}(id=${article.id})}" th:text="${article.title}">title</a>
+    <a th:href="@{/admin/articleDelete?id={id}&uid={uid}(id=${article.id}, uid=${user.uid})}">delete</a>
+</div>
+</body>
+</html>

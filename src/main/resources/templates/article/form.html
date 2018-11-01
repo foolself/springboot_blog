@@ -1,0 +1,44 @@
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<body>
+<p th:text="${session.username}"></p>
+<div th:fragment="articleForm">
+    <h2>add article:</h2>
+    <div th:if="${article == null}">
+        <form action="#" th:action="@{/article/save}" th:object="${articleForm}" method="post">
+            <p>title: <input type="text" name="title" /></p>
+            <input type="hidden" name="username" th:value="${session.username}"/>
+            <p>category: <select th:field="*{category}">
+                <option th:each="category:${categoryList}" th:value="${category.name}"
+                        th:text="${category.name}" ></option>
+            </select></p>
+            <p>tags: <select th:field="*{tags}" multiple="multiple">
+                <option th:each="tag:${tagList}" th:value="${tag.name}" th:text="${tag.name}"></option>
+            </select></p>
+            <p>content: <textarea name="content" rows="10"
+                                  cols="30"></textarea></p>
+            <p><input type="submit" value="submit"/></p>
+        </form>
+    </div>
+    <div th:if="${article != null}">
+        <p th:text="${article.title}"></p>
+        <form action="#" th:action="@{/article/update}" th:object="${articleForm}" method="post">
+            <p>title: <input type="hidden" name="id" th:value="${article.id}"/></p>
+            <input type="text" name="title" th:value="${article.title}" />
+            <input type="hidden" name="username" th:value="${session.username}"/>
+            <p hidden><input type="text" name="created" th:value="${article.created}" /></p>
+            <!--<p>category: <select th:field="*{category}">-->
+            <p>category: <select name="category">
+                <option th:each="category:${categoryList}" th:value="${category.name}"
+                        th:text="${category.name}" th:selected="${category.name==article.category.name}"></option>
+            </select></p>
+            <p>tags: <select th:field="*{tags}" multiple="multiple">
+                <option th:each="tag:${tagList}" th:value="${tag.name}" th:text="${tag.name}"></option>
+            </select></p>
+            <p>content: <textarea name="content" th:value="${article.content}" th:text="${article.content}" rows="10"
+                                  cols="30"></textarea></p>
+            <p><input type="submit" value="submit"/></p>
+        </form>
+    </div>
+</div>
+</body>
+</html>

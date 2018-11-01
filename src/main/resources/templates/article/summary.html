@@ -1,0 +1,12 @@
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<body>
+<div th:fragment="articleSummary">
+    <dl th:each="article : ${articleList}">
+        <a th:href="@{/article/detail/{id}(id=${article.id})}" th:text="${article.title}">title</a>
+        <p th:text="${article.title}">title</p>
+        <div th:include="common/tag::tags"></div>
+    </dl>
+    <br>
+</div>
+</body>
+</html>

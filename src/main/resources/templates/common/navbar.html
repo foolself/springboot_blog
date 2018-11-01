@@ -1,0 +1,18 @@
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<body>
+<div th:fragment="category">
+    <span><a th:href="@{/article/byCategory?name=编程}">编程</a></span> |
+    <span><a th:href="@{/article/byCategory?name=编程}">随笔</a></span>
+    <span th:if="${session.username == null}">
+        <a th:href="@{/login}">login</a>
+    </span>
+    <span th:if="${session.username != null}">
+        username: <span th:text="${session.username}">username</span> |
+        <a th:href="@{/home}">home</a> |
+        <a th:href="@{/userInfo}">userInfo</a> |
+        <a th:href="@{/logout}">logout</a> |
+    </span>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>userHome</title>
+</head>
+<body>
+<p><a th:href="@{/userInfo}">userInfo</a></p>
+<div th:include="common/navbar::category"></div>
+<div th:include="common/userInfoBar::userInfoBar"></div>
+<div th:include="article/summary::articleSummary"></div>
+<div th:include="common/tag::tagsBar"></div>
+<p><a th:href="@{/article/edit}">add article</a></p>
+</body>
+</html>

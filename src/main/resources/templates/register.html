@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>register</title>
+</head>
+<body>
+<h4>register user: </h4>
+<div th:if="${error != null}">
+    <p>Error: <span th:text="${error}"></span></p>
+</div>
+<div th:if="${session.username == null}">
+    <form action="#" th:action="@{/register}" th:object="${user}" method="post">
+        <p>username: <input type="text" th:field="*{username}" value=""/></p>
+        <p>password: <input type="password" th:field="*{password}" value=""/></p>
+        <p>email: <input type="email" th:field="*{email}" value=""/></p>
+        <p><input type="submit" value="提交"/></p>
+    </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,9 @@
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<body>
+<div th:fragment="tagsBar">
+    <dl th:each="tag : ${tagList}">
+        <span th:text="${tag}">tag</span>,
+    </dl>
+</div>
+</body>
+</html>

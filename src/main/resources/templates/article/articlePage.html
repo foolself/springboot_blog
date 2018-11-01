@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>article page</title>
+</head>
+<body>
+<H4>article: </H4>
+<div th:if="${article != null}">
+    <div th:include="article/detail::articleDetail"></div>
+    <br>
+    <H4>comment: </H4>
+    <div th:include="article/comment::commentForm"></div>
+    <div th:include="article/comment::commentList"></div>
+</div>
+<div th:if="${article == null}">
+    <h2>can't find the article.</h2>
+</div>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>index</title>
+</head>
+<body>
+<h4 th:if="${msg != null}" th:text="${msg}"></h4>
+<div th:if="${session.username != null}">
+    <h4>User: <span th:text="${session.username}"></span>logined.</h4>
+    <a th:href="@{/logout}">logout</a>
+</div>
+<div th:if="${session.username == null}">
+<form th:action="@{/login}" method="post">
+    <p>账号：<input type="text" name="username" th:value="${username}"/></p>
+    <p>密码：<input type="text" name="password" value=""/></p>
+    <P><input type="checkbox" name="rememberMe" />记住我</P>
+    <p><input type="submit" value="登录"/></p>
+</form>
+</div>
+<p>还没账户? 立即<a th:href="@{/register}">注册</a></p>
+</body>
+</html>

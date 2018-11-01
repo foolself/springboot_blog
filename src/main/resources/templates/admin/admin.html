@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>UserInfo</title>
+</head>
+<body>
+<div th:if="${session.username != null}">
+    username: <span th:text="${session.username}">username</span>
+</div>
+<h3>user list: </h3>
+<dl th:each="user : ${userList}">
+    <dd class="inf">
+        user: <a th:href="@{/admin/userInfo?uid={uid}(uid=${user.uid})}"><span th:text="${user.username}">User</span></a>
+        <a th:href="@{/admin/userDelete?uid={uid}(uid=${user.uid})}">delete</a>
+        <br>
+        role list: <span th:text="${user.roleList}">roles</span>
+    </dd>
+</dl>
+<br>
+<H3>user online: </H3>
+<dl th:each="userOnline : ${userOnlineList}">
+    <dd class="inf">
+        user: <span th:text="${userOnline.username}">User</span>
+        status: <span th:text="${userOnline.status}">roles</span>
+        <a th:href="@{/admin/forceLogout?id={id}(id=${userOnline.id})}">forceLogout</a>
+    </dd>
+</dl>
+<dl th:each="tag : ${tagList}">
+    <dd class="inf">
+        tag: <a th:href="@{/admin/userInfo?uid={uid}(uid=${user.uid})}"><span th:text="${tag}">tag</span></a>
+        <a th:href="@{/admin/userDelete?name={name}(name=${tag})}">delete</a>
+        <br>
+        role list: <span th:text="${user.roleList}">roles</span>
+    </dd>
+</dl>
+
+</body>
+</html>
