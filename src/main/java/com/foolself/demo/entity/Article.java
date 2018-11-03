@@ -119,6 +119,10 @@ public class Article {
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", created=" + created +
+                ", modified=" + modified +
+                ", likes=" + likes +
+                ", user=" + user +
+                ", category=" + category +
                 '}';
     }
 }

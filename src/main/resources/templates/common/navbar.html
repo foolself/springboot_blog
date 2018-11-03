@@ -1,6 +1,7 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <body>
-<div th:fragment="category">
+<div th:fragment="navbar">
+    <span><a th:href="@{/}">index</a></span> |
     <span><a th:href="@{/article/byCategory?name=编程}">编程</a></span> |
     <span><a th:href="@{/article/byCategory?name=编程}">随笔</a></span>
     <span th:if="${session.username == null}">

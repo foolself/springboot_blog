@@ -3,7 +3,7 @@
 <div th:fragment="articleDetail">
     <div id="title">
         <H4 th:text="${article.title}">title</H4>
-        by: <span th:text="${article.user.username}"> | </span>created: <span th:text="${article.created}"></span>
+        by: <span th:text="${article.user.username}"></span> | created: <span th:text="${article.created}"></span>
     </div>
     <div th:include="common/tag::tags"></div>
     <p th:if="${session.username != null && article.user.username == session.username}">

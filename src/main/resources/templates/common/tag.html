@@ -3,7 +3,7 @@
 <div th:fragment="tagsBar">
     <h4>tagsBar: </h4>
     <span th:each="tag : ${tagList}">
-        <a th:href="@{/article/byTag?name={name}(name=${tag.name})}" th:text="${tag.name}">tag</a>,
+        <a th:href="@{/article/byTag?name={name}(name=${tag})}" th:text="${tag}">tag</a>,
     </span>
 </div>
 <div th:fragment="tags">
